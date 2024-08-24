@@ -14,8 +14,8 @@ async function connectDB() {
     await client.connect();
     console.log('Connected to MongoDB');
 
-    const db = client.db('matriculasdb');
-    collection = db.collection('matriculas');
+    const db = client.db('jogos');
+    collection = db.collection('jogos');
 
   } catch (err) {
     console.error('Failed to connect to MongoDB', err);
@@ -27,47 +27,47 @@ connectDB();
 app.use(express.json()); 
 
 
-app.post('/matriculas', async (req, res) => {
+app.post('/jogos', async (req, res) => {
   try {
-    const novaMatricula = req.body;
+    const novoJogos = req.body;
 
-    const result = await collection.insertOne(novaMatricula)
+    const result = await collection.insertOne(novoJogos)
     
-    res.status(201).json({ message: 'Matrícula criada com sucesso', matriculaId: result.insertedId });
+    res.status(201).json({ message: 'Jogo criado com sucesso', jogoId: result.insertedId });
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao criar matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao criar Jogo', error: err });
   }
 });
 
-app.get('/matriculas', async (req, res) => {
+app.get('/jogos', async (req, res) => {
   try {
-    const matriculas = await collection.find().toArray()
-    res.status(200).json(matriculas);
+    const jogos = await collection.find().toArray()
+    res.status(200).json(jogos);
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao buscar matrículas', error: err });
+    res.status(500).json({ message: 'Erro ao buscar jogos', error: err });
   }
 });
 
 const { ObjectId } = require('mongodb');
 
-app.get('/matriculas/:id', async (req, res) => {
+app.get('/jogos/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
     const matricula = await collection.findOne({ _id: newId });
     //complete o código
 
-    if (!matricula) {
-      res.status(404).json({ message: 'Matrícula não encontrada' });
+    if (!jogos) {
+      res.status(404).json({ message: 'Jogos não encontrada' });
     } else {
-      res.status(200).json(matricula);
+      res.status(200).json(jogos);
     }
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao buscar matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao buscar jogo', error: err });
   }
 });
 
-app.put('/matriculas/:id', async (req, res) => {
+app.put('/jogos/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
@@ -76,16 +76,16 @@ app.put('/matriculas/:id', async (req, res) => {
     //complete o código
 
     if (result.matchedCount === 0) {
-      res.status(404).json({ message: 'Matrícula não encontrada' });
+      res.status(404).json({ message: 'Jogo não encontrado' });
     } else {
-      res.status(200).json({ message: 'Matrícula atualizada com sucesso' });
+      res.status(200).json({ message: 'Jogo atualizado com sucesso' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao atualizar matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao atualizar jogo', error: err });
   }
 });
 
-app.delete('/matriculas/:id', async (req, res) => {
+app.delete('/jogos/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
@@ -93,12 +93,12 @@ app.delete('/matriculas/:id', async (req, res) => {
     //complete o código
     const result = await collection.deleteOne({ _id: newId });
     if (result.deletedCount === 0) {
-      res.status(404).json({ message: 'Matrícula não encontrada' });
+      res.status(404).json({ message: 'Jogo não encontrado' });
     } else {
-      res.status(200).json({ message: 'Matrícula excluída com sucesso' });
+      res.status(200).json({ message: 'Jogo excluído com sucesso' });
     }
   } catch (err) {
-    res.status(500).json({ message: 'Erro ao excluir matrícula', error: err });
+    res.status(500).json({ message: 'Erro ao excluir jogo', error: err });
   }
 });
 

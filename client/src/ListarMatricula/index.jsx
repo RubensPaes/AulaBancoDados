@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import '../globals.css';
 
 export default function ReadMatriculas() {
-  const [matriculas, setMatriculas] = useState([]);
+  const [jogos, setJogos] = useState([]);
 
 
   useEffect(() => {
     const fetchMatriculas = async () => {
       try {
-        const response = await fetch('http://localhost:5000/matriculas');
+        const response = await fetch('http://localhost:5000/jogos');
         const data = await response.json();
-        setMatriculas(data);
+        setJogos(data);
       } catch (error) {
-        console.error('Erro ao buscar as matrículas:', error);
+        console.error('Erro ao buscar as jogos:', error);
       }
     };
 
@@ -21,43 +21,43 @@ export default function ReadMatriculas() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/matriculas/${id}`, {
+      const response = await fetch(`http://localhost:5000/jogos/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
 
-        setMatriculas(matriculas.filter((matricula) => matricula._id !== id));
-        alert('Matrícula excluída com sucesso!');
+        setJogos(matriculas.filter((jogo) => jogo._id !== id));
+        alert('Jogo excluido com sucesso!');
       } else {
-        alert('Erro ao excluir matrícula.');
+        alert('Erro ao excluir jogo.');
       }
     } catch (error) {
-      console.error('Erro ao excluir matrícula:', error);
+      console.error('Erro ao excluir jogo:', error);
     }
   };
 
   return (
     <div className='container'>
-      <h2>Lista de Matrículas</h2>
+      <h2>Lista de Jogos</h2>
       <table  className="table-container" border="1">
         <thead>
           <tr>
-            <th>Código Matrícula</th>
-            <th>Nome do Aluno</th>
-            <th>Turma</th>
-            <th>Curso</th>
+            <th>Código Jogo</th>
+            <th>Nome do Jogo</th>
+            <th>Valor</th>
+            <th>Empresa</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {matriculas.map((matricula) => (
-            <tr key={matricula._id}>
-              <td>{matricula._id}</td>
-              <td>{matricula.aluno}</td>
-              <td>{matricula.turma}</td>
-              <td>{matricula.curso}</td>
+          {jogos.map((jogos) => (
+            <tr key={jogos._id}>
+              <td>{jogos._id}</td>
+              <td>{jogos.nome}</td>
+              <td>{jogos.valor}</td>
+              <td>{jogos.empresa}</td>
               <td>
-                <button onClick={() => handleDelete(matricula._id)}>Excluir</button>
+                <button onClick={() => handleDelete(jogos._id)}>Excluir</button>
               </td>
             </tr>
           ))}
