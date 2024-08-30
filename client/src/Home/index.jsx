@@ -6,14 +6,14 @@ export default function Home() {
         <div className='container'>
             <h2>Banco de Jogos</h2>
             <div className="card-container">
-                <Link to="/matricula/cadastrar" className="card">
-                    <div>Registrar Matrícula</div>
+                <Link to="/jogo/cadastrar" className="card">
+                    <div>Registrar Jogos</div>
                 </Link>
-                <Link to="/matriculas" className="card">
-                    <div>Lista de Matrícula</div>
+                <Link to="/jogos" className="card">
+                    <div>Lista de Jogos</div>
                 </Link>
-                <Link to="/matriculas/alterar" className="card">
-                    <div>Editar Matrícula</div>
+                <Link to="/jogos/alterar" className="card">
+                    <div>Editar Jogos</div>
                 </Link>
             </div>
         </div>
