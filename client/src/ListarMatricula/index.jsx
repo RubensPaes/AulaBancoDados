@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../globals.css';
-
+import Header from '../componentes/Header';
+import Footer from '../componentes/Footer';
 export default function ReadMatriculas() {
   const [jogos, setJogos] = useState([]);
 
@@ -37,6 +38,8 @@ export default function ReadMatriculas() {
   };
 
   return (
+    <>
+    <Header/>
     <div className='container'>
       <h2>Lista de Jogos</h2>
       <table  className="table-container" border="1">
@@ -64,5 +67,7 @@ export default function ReadMatriculas() {
         </tbody>
       </table>
     </div>
+    <Footer/>
+    </>
   );
 }

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import '../globals.css';
-
+import Header from '../componentes/Header';
+import Footer from '../componentes/Footer';
 export default function Home() {
     return (
+        <>
+        <Header/>
         <div className='container'>
             <h2>Banco de Jogos</h2>
             <div className="card-container">
@@ -17,5 +20,7 @@ export default function Home() {
                 </Link>
             </div>
         </div>
+        <Footer/>
+        </>
     );
 }

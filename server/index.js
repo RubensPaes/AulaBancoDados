@@ -26,7 +26,7 @@ connectDB();
 
 app.use(express.json()); 
 
-
+/*Aqui é o comando para inserir*/
 app.post('/jogos', async (req, res) => {
   try {
     const novoJogos = req.body;
@@ -38,7 +38,7 @@ app.post('/jogos', async (req, res) => {
     res.status(500).json({ message: 'Erro ao criar Jogo', error: err });
   }
 });
-
+/*Aqui é o comando para listar*/
 app.get('/jogos', async (req, res) => {
   try {
     const jogos = await collection.find().toArray()
@@ -49,13 +49,13 @@ app.get('/jogos', async (req, res) => {
 });
 
 const { ObjectId } = require('mongodb');
-
+/*Aqui é o comando para listar*/
 app.get('/jogos/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
     const matricula = await collection.findOne({ _id: newId });
-    //complete o código
+  
 
     if (!jogos) {
       res.status(404).json({ message: 'Jogos não encontrada' });
@@ -66,14 +66,13 @@ app.get('/jogos/:id', async (req, res) => {
     res.status(500).json({ message: 'Erro ao buscar jogo', error: err });
   }
 });
-
+/*Aqui é o comando para alterar*/
 app.put('/jogos/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
     const atualizacao = req.body;
     const result = await collection.updateOne( { _id: newId }, { $set: atualizacao });
-    //complete o código
 
     if (result.matchedCount === 0) {
       res.status(404).json({ message: 'Jogo não encontrado' });
@@ -84,13 +83,13 @@ app.put('/jogos/:id', async (req, res) => {
     res.status(500).json({ message: 'Erro ao atualizar jogo', error: err });
   }
 });
-
+/*Aqui é o comando para deletar*/
 app.delete('/jogos/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const newId =  new ObjectId(id);
 
-    //complete o código
+
     const result = await collection.deleteOne({ _id: newId });
     if (result.deletedCount === 0) {
       res.status(404).json({ message: 'Jogo não encontrado' });

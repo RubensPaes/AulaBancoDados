@@ -15,7 +15,38 @@ body {
     padding: 0;
     box-sizing: border-box;
   }
-  
+
+  /* estilização do Header*/
+  .cabeca {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 25px;
+    height: 120px;
+}
+
+.divdomauricio {
+    flex: 1;
+    text-align: center;
+}
+
+.h1d {
+    color: white;
+    font-size: 30px;
+    margin: 0;
+}
+
+.divdoheader {
+    background-image: url("/logo.jpeg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 25px;
+}
+
   h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -149,7 +180,7 @@ body {
     justify-content: center;
     width: 200px;
     height: 200px;
-    background-color: #409706b7;
+    background-color: black;
     color: white;
     border-radius: 8px;
     text-decoration: none;
@@ -160,5 +191,5 @@ body {
   }
   
   .card:hover {
-    background-color: #0056b3;
+    background-color: gray;
   }

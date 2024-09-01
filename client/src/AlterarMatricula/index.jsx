@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Header from '../componentes/Header';
+import Footer from '../componentes/Footer';
 export default function UpdateMatricula() {
   const [id, setId] = useState('');
   const [nome, setNome] = useState('');
@@ -33,6 +34,8 @@ export default function UpdateMatricula() {
   };
 
   return (
+    <>
+    <Header/>
     <div className='container'>
     <form  className="form-container" onSubmit={handleSubmit}>
       <h2>Atualizar Jogo</h2>
@@ -67,5 +70,7 @@ export default function UpdateMatricula() {
       <button type="submit">Atualizar Jogo</button>
     </form>
     </div>
+    <Footer/>
+    </>
   );
 }
